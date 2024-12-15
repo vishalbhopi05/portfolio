@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth; /* Optional */
+  }
+  
+  .bg-dark {
+    background-color: #121212 !important;
+  }
+  
+  .profile-img img {
+    border: 2px solid #fff;
+  }
+  
+  .social-icons a {
+    font-size: 1.5rem;
+  }
+  
+  .nav .nav-link {
+    margin: 10px 0;
+  }
+  
+  .nav .active {
+    text-decoration: underline;
+  }
+  
+  .vh-100 {
+    min-height: 100vh;
+  }
+  
