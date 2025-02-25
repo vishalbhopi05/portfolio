@@ -1,285 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Vishal Bhopi</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.jpg" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpack Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
-
-<body class="index-page">
-
-  <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
-
-    <div class="profile-img">
-      <img src="assets/img/vishal.jpeg" alt="" class="img-fluid rounded-circle">
+<body>
+    <div class="container">
+        <h1>Understanding Webpack</h1>
+        
+        <div class="section">
+            <h2>Introduction</h2>
+            <p>Webpack is a popular module bundler for JavaScript applications. It helps manage dependencies, optimize assets, and improve performance.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Code Splitting</li>
+                <li>Loaders for Processing Files</li>
+                <li>Plugins for Extending Functionality</li>
+                <li>Asset Optimization</li>
+                <li>Hot Module Replacement (HMR)</li>
+                <li>Tree Shaking for Removing Unused Code</li>
+                <li>Development and Production Modes</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Installation</h2>
+            <p>Install Webpack using npm:</p>
+            <code>npm install --save-dev webpack webpack-cli
+        </div>
+        
+        <div class="section">
+            <h2>Basic Configuration</h2>
+            <p>Create a <code>webpack.config.js</code> file:</p>
+            <pre>
+const path = require('path');
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
+    mode: 'development'
+};
+            </pre>
+        </div>
+        
+        <div class="section">
+            <h2>Loaders</h2>
+            <p>Loaders help Webpack process different file types:</p>
+            <pre>
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
+        },
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
+        }
+    ]
+}
+            </pre>
+        </div>
+        
+        <div class="section">
+            <h2>Plugins</h2>
+            <p>Plugins extend Webpack’s functionality. Example:</p>
+            <pre>
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+    plugins: [
+        new HtmlWebpackPlugin({ template: './src/index.html' }),
+        new webpack.HotModuleReplacementPlugin()
+    ]
+};
+            </pre>
+        </div>
+        
+        <div class="section">
+            <h2>Example Project</h2>
+            <p>To bundle a simple project, create these files:</p>
+            <ul>
+                <li><code>index.html</code> in <code>src</code></li>
+                <li><code>index.js</code> in <code>src</code></li>
+                <li>Create a <code>styles.css</code> file</li>
+                <li>Run <code>npx webpack</code> to bundle</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Development vs Production</h2>
+            <p>Webpack allows different modes for optimization:</p>
+            <ul>
+                <li><strong>Development Mode:</strong> Includes source maps and better debugging.</li>
+                <li><strong>Production Mode:</strong> Optimizes assets for better performance.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Conclusion</h2>
+            <p>Webpack is a powerful tool that streamlines JavaScript development by managing dependencies and optimizing performance. Mastering it can greatly enhance your development workflow.</p>
+        </div>
     </div>
-
-    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1 class="sitename">Vishal Bhopi</h1>
-    </a>
-
-    <div class="social-links text-center">
-      <a href="https://x.com/vishal_bhopi45?s=21" target="_blank" class="twitter"><i class="bi bi-twitter-x"></i></a>
-      <a href="https://www.facebook.com/vishal.bhopi.38?mibextid=wwXIfr&rdid=7zFRUKBabJvHA4Ez&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DvrVGsV57%2F%3Fmibextid%3DwwXIfr" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-      <a href="https://www.instagram.com/vishal.bhopi45/profilecard/?igsh=MWthdHprYWJ3Yzcyeg%3D%3D" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/vishal-bhopi-9b94471b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-    </div>
-
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
-        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
-      </ul>
-    </nav>
-
-  </header>
-
-  <main class="main">
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/vishal.jpeg" alt="" data-aos="fade-in" class="">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h2>Vishal Bhopi</h2>
-        <p>I'm <span class="typed" data-typed-items="FrontEnd Developer">Web Developer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-      </div>
-
-    </section><!-- /Hero Section -->
-
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>I am skilled web Developer with 4 years of experience in building responsive, user centric web application. Proficient in React, Next JS, Angular. I focus on delivering high performance, scalable, and maintainable code while staying updated with modern web technologies and best practices.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4 justify-content-center">
-     
-          <div class="col-lg content">
-            <h2>Web Developer</h2>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>26 Jan 1999</span></li>
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li> -->
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>7263811683</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Badlapur, Mumbai</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>25</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>BE - Information Technology</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>vishalbhopi05@gmail.com</span></li>
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li> -->
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </section><!-- /About Section -->
-
-  
-
-
-
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>Front-End Software Developer at Reliance Jio. Working on media application like JioTV and JioTvPlus and Rights management system. Solution oriented and organized professional having 4 years of work experience, seeking responsible position to expand my learnings and skills with knowledge while offering opportunities for growth of the organization.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row">
-
-  
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Software Developer - Product Engineering Web Development</h4>
-              <h5>2020 - Present</h5>
-              <p><em>Reliance Jio </em></p>
-              <ul>
-                <li>Spearheaded the development of the JioTV website, ensuring seamless desktop and mobile user experiences with deep linking capabilities, enabling efficient redirection to content within the JioTV app.</li>
-                <li>Architected and implemented the JET (Jio Enterprise Team) website for internal use, featuring a comprehensive catalog of technology stacks employed within the organization, along with course content. Additionally, curated a list of tools integral to the organization's workflow.</li>
-                <li>Developed a Content Management System for JioNews, making it easier for the content curation team to efficiently manage and enhance the platform's content.</li>
-                <li>Developed web components in vanilla JavaScript, designed for cross-framework utilization, demonstrating versatility in development practices.</li>
-                <li>Contributed significantly to various applications including JioWorks, JioFace, JioANPR, and JioNews, showcasing versatility in application development.</li>
-                <li>Currently working and leading JRMS system for managing rights of different contents on different platforms.</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item" >
-              <h4>Bachelor of Engineering, Information Technology </h4>
-              <h5>2017 - 2020</h5>
-              <p><em>DY Patil's Ramrao Adik Institute of Technology</em></p>
-              <p>8.57 SGPI</p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Diploma In Engineering, Information Technology</h4>
-              <h5>2014- 2017</h5>
-              <p><em>Government Polytechnic Thane</em></p>
-              <p>85.35 %</p>
-            </div><!-- Edn Resume Item -->
-            <div class="resume-item">
-              <h4>SSC</h4>
-              <h5>2014</h5>
-              <p><em>Shiv Bhakt Vidya Mandir</em></p>
-              <p>85.35 %</p>
-            </div><!-- Edn Resume Item -->
-
-            <div >
-              <h3 class="resume-title">Skills</h3>
-              <div class="skillWrappper">        
-              <span class="badge badge-info skillBadge">Angular</span>
-              <span class="badge badge-info skillBadge">React</span>
-              <span class="badge badge-info skillBadge">Next JS</span>
-              <span class="badge badge-info skillBadge">JavaScript</span>
-              <span class="badge badge-info skillBadge">Redux</span>
-              <span class="badge badge-info skillBadge">Node JS</span>
-              <span class="badge badge-info skillBadge">Web Components</span>
-              <span class="badge badge-info skillBadge">LG & Samsung TV App Development</span>
-              <span class="badge badge-info skillBadge">SEO</span>
-              <span class="badge badge-info skillBadge">JAVA</span>
-              <span class="badge badge-info skillBadge">Docker</span>
-              <span class="badge badge-info skillBadge">JS Modules</span>
-              <span class="badge badge-info skillBadge">SCSS</span>
-              <span class="badge badge-info skillBadge">Azure</span>
-            </div>
-     
-            </div><!-- Edn Resume Item -->
-
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Resume Section -->
-
-
-  
-
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Feel free to reach out to me for collaborations, project inquiries, or just to say hi! I will get back to you as soon as possible.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg">
-
-            <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>House No.561, Chikhloli Gaon, Near NMRL Road, Opp. Dmart, Badlapur(E)</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call Me</h3>
-                  <p>+91 7263811683</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email me</h3>
-                  <p>vishalbhopi05@gmail.com</p>
-                </div>
-              </div><!-- End Info Item -->
-            </div>
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section><!-- /Contact Section -->
-
-  </main>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
 </body>
-
 </html>
+ </code>
